@@ -1,0 +1,14 @@
+SLStudio.Utils.RemoveHighlighting(get_param('untitled', 'handle'));
+SLStudio.Utils.RemoveHighlighting(get_param('gm_untitled', 'handle'));
+annotate_port('gm_untitled/butterbp/delay_process_section1_tap0', 0, 1, '');
+annotate_port('gm_untitled/butterbp/delay_process_section1_tap0', 1, 1, '');
+annotate_port('gm_untitled/butterbp/t', 0, 1, '');
+annotate_port('gm_untitled/butterbp/t1', 0, 1, '');
+annotate_port('gm_untitled/butterbp/multiplier5', 0, 1, '');
+annotate_port('gm_untitled/butterbp/dtc17', 0, 1, '');
+annotate_port('gm_untitled/butterbp/Sub', 0, 1, '');
+annotate_port('gm_untitled/butterbp/dtc18', 0, 1, '');
+annotate_port('gm_untitled/butterbp/dtc19', 0, 1, '');
+annotate_port('gm_untitled/butterbp/Sub1', 0, 1, '');
+annotate_port('gm_untitled/butterbp/dtc20', 0, 1, '');
+annotate_port('gm_untitled/butterbp/dtc21', 0, 1, '');
