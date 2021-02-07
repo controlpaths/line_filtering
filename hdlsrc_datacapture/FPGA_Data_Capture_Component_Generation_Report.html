@@ -1,0 +1,185 @@
+<html>
+<head>
+<script language="JavaScript" type="text/javascript">
+/*<![CDATA[*/
+function rtwRunMatlabCmd(cmd) {
+  try { 
+    window.location.href="matlab: " + cmd;
+  } catch (e) { 
+  } 
+}
+/*]]>*/
+</script>
+
+</head>
+<body>
+<h1>
+Table of Contents
+</h1>
+<ul>
+<li>
+<a href="#sec_Generation_Summary">
+Generation Summary
+</a>
+
+</li>
+<li>
+<a href="#sec_How_to_Integrate_Generated_IP_into_Existing_FPGA_Design">
+How to Integrate Generated IP into Existing FPGA Design
+</a>
+
+</li>
+<li>
+<a href="#sec_Capture_Data">
+Capture Data
+</a>
+
+</li>
+
+</ul>
+<h1 name="sec_Generation_Summary" id="sec_generation_summary">
+Generation Summary
+</h1>
+The FPGA Data Capture HDL IP generated successfully.<br><br><table width="100%" cellpadding="2" border="1">
+<tr style="background-color: #eeeeff">
+<td width="25%" align="left" valign="top" style="border-style: none">
+<b>
+Port Name
+</b>
+
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+<b>
+Bit Width
+</b>
+
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+<b>
+Routed to Capture Buffer
+</b>
+
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+<b>
+Available for Trigger Condition
+</b>
+
+</td>
+
+</tr>
+<tr style="background-color: #ffffff">
+<td width="25%" align="left" valign="top" style="border-style: none">
+filter_input
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+14
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+Yes
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+Yes
+</td>
+
+</tr>
+<tr style="background-color: #eeeeff">
+<td width="25%" align="left" valign="top" style="border-style: none">
+filter_output
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+18
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+Yes
+</td>
+<td width="25%" align="left" valign="top" style="border-style: none">
+Yes
+</td>
+
+</tr>
+
+</table>
+FPGA Vendor: Xilinx<br>Language:    Verilog<br>Folder:      hdlsrc_dc<br>Component name: datacapture<br>Sample depth:   1024<br>Maximum number of trigger stages:   1<br><h1 name="sec_How_to_Integrate_Generated_IP_into_Existing_FPGA_Design" id="sec_how_to_integrate_ip_into_fpga_design">
+How to Integrate Generated IP into Existing FPGA Design
+</h1>
+<img src="Workflow2.png"><br><br>
+Add the generated HDL files in the hdlsrc_dc directory into your FPGA project. The top-level of the IP core is datacapture.v.<br>
+Instantiate the HDL IP datacapture in your HDL code and connect it to the ports you generated for capture and triggers. <br>
+Copy and paste this module instance into your HDL. If the names do not exactly match the signal names in your HDL code, update the names.<br><br> <code>datacapture u0 (<br>&nbsp;&nbsp;&nbsp;&nbsp;.clk(clk),<br>&nbsp;&nbsp;&nbsp;&nbsp;.clk_enable(clk_enable),<br>&nbsp;&nbsp;&nbsp;&nbsp;.ready_to_capture(ready_to_capture),<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter_input(filter_input),<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter_output(filter_output)); <br> </code><br>ready_to_capture which is an output port, can be left open if this HDL IP datacapture is not for continuous capturing of data. <br><b>Note:</b> To capture data at multiple trigger stages, set the <i>clk_enable</i> signal to high (1). <br><br>Finally, compile and deploy the integrated FPGA design:<br><ol><li>Compile the integrated FPGA design to generate a new FPGA programming file.</li><li>Make sure that the JTAG cable is connected between your FPGA board and the host computer.</li><li>Program the FPGA using the programming tool from FPGA vendor.</li></ol><h1 name="sec_Capture_Data" id="sec_capture_data">
+Capture Data
+</h1>
+<h3 name="sec_Capture_Data_into_MATLAB" id="sec_capture_data_into_matlab">
+Capture Data into MATLAB
+</h3>
+<ol><li>Run the generated script <i>hdlsrc_dc/launchDataCaptureApp.m</i> to open the Data Capture app.</li><li>On the Trigger tab, select the Number of trigger stages.</li><li>On the Trigger tab, specify a trigger condition for each stage. For single stage, if you do not specify a condition, the default behavior is to capture data immediately.</li><li>On the Data Types tab, specify data types for the captured signals.</li><li>Press the Capture button to capture data into a workspace variable.</li></ol><b>Command-Line Alternative</b>:<br>
+You can use the generated System object directly. Set the data types and trigger condition using the methods and properties of the System object, then call the object to capture data. The generated script provides a starting point. You cannot edit the System object itself.<table width="100%" cellpadding="2" border="1">
+<tr style="background-color: #eeeeff">
+<td width="50%" align="left" valign="top" style="border-style: none">
+<b>
+Generated File
+</b>
+
+</td>
+<td width="50%" align="left" valign="top" style="border-style: none">
+<b>
+Location
+</b>
+
+</td>
+
+</tr>
+<tr style="background-color: #ffffff">
+<td width="50%" align="left" valign="top" style="border-style: none">
+MATLAB App launch script
+</td>
+<td width="50%" align="left" valign="top" style="border-style: none">
+<a href="matlab:cd hdlsrc_dc;launchDataCaptureApp">hdlsrc_dc/launchDataCaptureApp.m</a>
+</td>
+
+</tr>
+<tr style="background-color: #eeeeff">
+<td width="50%" align="left" valign="top" style="border-style: none">
+System object
+</td>
+<td width="50%" align="left" valign="top" style="border-style: none">
+<a href="matlab:edit('hdlsrc_dc/datacapture.m')">hdlsrc_dc/datacapture.m</a>
+</td>
+
+</tr>
+
+</table>
+<h3 name="sec_Capture_Data_into_Simulink" id="sec_capture_data_into_simulink">
+Capture Data into Simulink
+</h3>
+<ol><li>In the generated model, open the FPGA Data Reader block. </li><li>Click the "Launch Signal and Trigger Editor" button. </li><li>On the Triggers tab, select the Number of trigger stages. </li><li>On the Triggers tab, specify a trigger condition for each stage. For single stage, if you do not specify a condition, the default behavior is to capture data immediately. </li><li>On the Data Types tab, specify data types for the captured signals.</li><li>Run the model to capture data.</li></ol><table width="100%" cellpadding="2" border="1">
+<tr style="background-color: #eeeeff">
+<td width="50%" align="left" valign="top" style="border-style: none">
+<b>
+Generated File
+</b>
+
+</td>
+<td width="50%" align="left" valign="top" style="border-style: none">
+<b>
+Location
+</b>
+
+</td>
+
+</tr>
+<tr style="background-color: #ffffff">
+<td width="50%" align="left" valign="top" style="border-style: none">
+Capture model
+</td>
+<td width="50%" align="left" valign="top" style="border-style: none">
+<a href="matlab:open('hdlsrc_dc/datacapture_model.slx')">hdlsrc_dc/datacapture_model.slx</a>
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>

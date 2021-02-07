@@ -10,3 +10,4 @@ Example project that shows how to decode a signal from a line where 3 channels a
 - **butter_fil.slx** Simulink model to test the filter with FPGA-in-the-Loop.  
 
 Folders **/hdlsrc** and **/hdlsrc2** contains the generated HDL files.
+Folder **/hdlsrc_datacapture** contains FPGA Data Capture module.
